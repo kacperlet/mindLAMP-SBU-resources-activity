@@ -3,12 +3,12 @@ import ResourceCard from "./ResourceCard"
 function ResourceList() {
 
     const resources = [
-        {color: "#4378DB", text: "Traffic Signals", icon_path: "icons/traffic.svg"},
-        {color: "#F0A714", text: "Focus", icon_path: "icons/focus.svg"},
-        {color: "#28A164", text: "Intersections", icon_path: "icons/intersections.svg"},
-        {color: "#F35555", text: "Following Distance", icon_path: "icons/following_distance.svg"},
-        {color: "#F38E55", text: "Parking", icon_path: "icons/parking.svg"},
-        {color: "#4378DB", text: "Pre-Driving Checklist", icon_path: "icons/pre_driving.svg"},
+        {color: "#4378DB", text: "Traffic Signals", icon_path: "icons/traffic.svg", path: "traffic"},
+        {color: "#F0A714", text: "Focus", icon_path: "icons/focus.svg", path: "focus"},
+        {color: "#28A164", text: "Intersections", icon_path: "icons/intersections.svg", path: "intersections"},
+        {color: "#F35555", text: "Following Distance", icon_path: "icons/following_distance.svg", path: "following"},
+        {color: "#F38E55", text: "Parking", icon_path: "icons/parking.svg", path: "parking"},
+        {color: "#4378DB", text: "Pre-Driving Checklist", icon_path: "icons/pre_driving.svg", path: "checklist"},
     ]
 
     return <div id="resource-list">
@@ -19,6 +19,7 @@ function ResourceList() {
                     text={resource.text}
                     color={resource.color}
                     icon_path={resource.icon_path}
+                    path={resource.path}
                 />
             ))
         }

@@ -27,6 +27,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 
     font-size: 16px;
     font-weight: 500;
@@ -70,4 +71,27 @@ div:hover > .right-arrow {
     align-items: center;
     justify-content: center;
     gap: 40px
+}
+
+.resource-text-box {
+    height: 57vh;
+    overflow-y: auto;
+}
+
+#learn-more-box {
+    height: 76px;
+    width: 90%;
+    background: #A5E5CC;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.resource-text {
+    font-size: 14px;
+    width: 80%;
 }
