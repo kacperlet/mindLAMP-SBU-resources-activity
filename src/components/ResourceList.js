@@ -1,7 +1,8 @@
+import { useNavigate } from "react-router-dom"
 import ResourceCard from "./ResourceCard"
 
 function ResourceList() {
-
+    const navigate = useNavigate()
     const resources = [
         {color: "#4378DB", text: "Traffic Signals", icon_path: "icons/traffic.svg", path: "traffic"},
         {color: "#F0A714", text: "Focus", icon_path: "icons/focus.svg", path: "focus"},
@@ -23,7 +24,7 @@ function ResourceList() {
                 />
             ))
         }
-        <div id="suggestions-box">
+        <div onClick={() => {navigate('/feedback')}}  id="suggestions-box">
             <span>Something Else? Make A Suggestion!</span>
             <img alt="" className="right-arrow" src="icons/arrow.svg" />
         </div>
