@@ -2,11 +2,17 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import resources from './resources';
+import Quiz from './QuizPage';
 
 function ResourcePage() {
     const navigate = useNavigate();
     const { id } = useParams();
     const resource = resources[id];
+
+    if (id === "quiz")
+    {
+        return <Quiz />
+    }
 
     return <>
         <div id="resource-header">
