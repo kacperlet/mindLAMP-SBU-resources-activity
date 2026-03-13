@@ -1,11 +1,14 @@
 import ResourceList from "./ResourceList"
+import {ReactComponent as IconMindlamp} from "../icons/mindlamp.svg";
+import {ReactComponent as IconDots} from "../icons/dots.svg";
+
 
 function Home() {
     return <>
         <div id="resource-header">
-            <img alt="" src="icons/mindlamp.svg"></img>
+            <IconMindlamp />
             <span>Resources</span>
-            <img alt="" src="icons/dots.svg" style={{height: 24}}></img>
+            <IconDots  style={{height: 24}} />
         </div>
         <ResourceList/>
     </>
