@@ -1,8 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+import navigate from "../helpers/Navigate"
 
 function ResourceCard(props) {
     const { text, icon, color, path } = props
-    const navigate = useNavigate();
 
     console.log(text)
     return <div className='resource-card' onClick={() => navigate(`/resource/${path}`)}>

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import navigate from "../helpers/Navigate"
 
 function FeedBackTextBox(){
 
@@ -12,8 +12,6 @@ function FeedBackTextBox(){
         console.log(feedbackValue)
         setSubmit(true)
     }
-
-    const navigate = useNavigate()
 
     if(!submit){
     return <div id="feedback-textbox">

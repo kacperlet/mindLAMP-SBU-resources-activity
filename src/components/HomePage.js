@@ -1,10 +1,10 @@
 import ResourceList from "./ResourceList"
 import {ReactComponent as IconMindlamp} from "../icons/mindlamp.svg";
 import {ReactComponent as IconDots} from "../icons/dots.svg";
-import { useNavigate } from "react-router-dom"
+import navigate from "../helpers/Navigate"
 
 function Home() {
-    const navigate = useNavigate()
+
     return <>
         <div id="resource-header">
             <IconMindlamp />

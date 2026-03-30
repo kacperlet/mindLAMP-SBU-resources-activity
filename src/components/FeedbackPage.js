@@ -1,9 +1,7 @@
-import { useNavigate } from "react-router-dom"
 import FeedBackTextBox from "./FeedBackTextBox.js"
+import navigate from "../helpers/Navigate"
 
 function Feedback() {
-    
-    const navigate = useNavigate()
 
     return <div style={{maxHeight:"100%", display:"flex", flexDirection:"column"}}>
     

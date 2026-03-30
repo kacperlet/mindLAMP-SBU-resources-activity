@@ -1,12 +1,11 @@
 
-import { useNavigate, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import resources from './resources';
 import Quiz from './QuizPage';
+import navigate from "../helpers/Navigate"
 
-function ResourcePage() {
-    const navigate = useNavigate();
-    const { id } = useParams();
+function ResourcePage(props) {
+    const { id } = props;
     const resource = resources[id];
 
     if (id === "quiz")

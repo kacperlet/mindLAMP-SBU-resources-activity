@@ -1,11 +1,10 @@
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import {ReactComponent as IconMindlamp} from "../icons/mindlamp.svg";
 import {ReactComponent as IconDots} from "../icons/dots.svg";
 import QuizQuestion from './QuizQuestion';
+import navigate from "../helpers/Navigate"
 
 function Quiz() {
-    const navigate = useNavigate();
     const [ questionIndex, setQuestionIndex ] = useState(0);
 
     const questions = [
