@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import {ReactComponent as IconMindlamp} from "../icons/mindlamp.svg";
 import {ReactComponent as IconDots} from "../icons/dots.svg";
 import QuizQuestion from './QuizQuestion';
 import navigate from "../helpers/Navigate"
+import QuizResults from './QuizResults';
 
 function Quiz() {
     const [ questionIndex, setQuestionIndex ] = useState(0);
+    const correctAnswers = useRef([]); // a list of indices with the correct answer
 
     const questions = [
         {
@@ -14,6 +16,7 @@ function Quiz() {
             correctChoice: 1, // B
             explanation: "At a four-way stop, if two vehicles arrive at the same time, the safest choice is to yield and let the other vehicle go first (especially if there's any uncertainty). This helps prevent confusion and reduces the risk of a collision. Proceeding quickly or honking can startle other drivers and increase danger, and waiting for a signal can lead to hesitation or miscommunication. Yielding is predictable, calm, and keeps everyone safe."
         },
+        /*
         {
             question: "If a driver is following you too closely, what are appropriate actions you can take?",
             choices: ["Speed up to increase distance", "Maintain a steady speed and allow space ahead", "Change lanes when safe to do so", "Pull over when it is safe and let the vehicle pass"],
@@ -80,6 +83,7 @@ function Quiz() {
             correctChoice: 2,
             explanation: "When skidding, the correct response is to ease off both the gas and brake pedals and steer gently in the direction you want the car to go. Hard braking locks the wheels and worsens the skid. Sharp steering inputs can cause the vehicle to spin out. Staying calm and making smooth, controlled adjustments gives the tires the best chance to regain traction."
         },
+        */
     ]
 
     /*
@@ -91,15 +95,22 @@ function Quiz() {
         },
     */
 
-    const incrementQuestion = () => {
-        if (questionIndex + 1 < questions.length)
+    const incrementQuestion = (wasCorrect) => {
+        if (wasCorrect)
+            correctAnswers.current.push(questionIndex)
+
+        if (questionIndex + 1 <= questions.length) 
             setQuestionIndex(questionIndex+1);
         else
+        {
+            correctAnswers.current = []
             setQuestionIndex(0)
+        }
     }
 
     const currentQuestion = questions[questionIndex];
-    const progress = (100 * (questionIndex+1.0)/questions.length) + '%'
+    const progress = (100 * (questionIndex)/questions.length) + '%';
+    const showResults = questionIndex === questions.length;
     
     return (
         <div id="quiz">
@@ -110,15 +121,31 @@ function Quiz() {
             </div>
             <div id="progress-bar" style={{width: progress}}></div>
             <div id="quiz-body">
-                <span>Question {questionIndex+1} out of {questions.length}</span>
-                <QuizQuestion 
-                    key={questionIndex}
-                    question={currentQuestion.question}
-                    choices={currentQuestion.choices}
-                    correctChoice={currentQuestion.correctChoice}
-                    explanation={currentQuestion.explanation}
-                    incrementQuestion={incrementQuestion}
-                />
+                {
+                    !showResults ? 
+                    <span>Question {questionIndex+1} out of {questions.length}</span>
+                    :
+                    <span>Quiz Results</span>
+                }
+                
+                {
+                    showResults ? 
+                    <QuizResults 
+                        correctAnswers={correctAnswers.current}
+                        questionCount={questions.length}
+                        goBack={incrementQuestion}
+                    />
+                    :
+                    <QuizQuestion 
+                        key={questionIndex}
+                        question={currentQuestion.question}
+                        choices={currentQuestion.choices}
+                        correctChoice={currentQuestion.correctChoice}
+                        explanation={currentQuestion.explanation}
+                        incrementQuestion={incrementQuestion}
+                    />
+                }
+                
             </div>                    
         </div>
     )

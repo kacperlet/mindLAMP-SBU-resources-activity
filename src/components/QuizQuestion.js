@@ -32,6 +32,10 @@ function QuizQuestion(props) {
         
     }
 
+    const handleNextQuestion = (e) => {
+        incrementQuestion(isCorrect)
+    }
+
     let message = ""
     let messageClass = "quiz-message"
     if (isCorrect === true)
@@ -82,10 +86,9 @@ function QuizQuestion(props) {
                 <div className="quiz-question-explanation">
                     {explanation}
                 </div>
-                <button onClick={incrementQuestion}>
+                <button onClick={handleNextQuestion}>
                     Next Question
                 </button>
-                
                 
             </div>
         )
