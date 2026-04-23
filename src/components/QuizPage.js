@@ -8,6 +8,7 @@ import QuizResults from './QuizResults';
 function Quiz() {
     const [ questionIndex, setQuestionIndex ] = useState(0);
     const correctAnswers = useRef([]); // a list of indices with the correct answer
+    const startTime = useRef(null);
 
     const questions = [
         {
@@ -16,7 +17,6 @@ function Quiz() {
             correctChoice: 1, // B
             explanation: "At a four-way stop, if two vehicles arrive at the same time, the safest choice is to yield and let the other vehicle go first (especially if there's any uncertainty). This helps prevent confusion and reduces the risk of a collision. Proceeding quickly or honking can startle other drivers and increase danger, and waiting for a signal can lead to hesitation or miscommunication. Yielding is predictable, calm, and keeps everyone safe."
         },
-        /*
         {
             question: "If a driver is following you too closely, what are appropriate actions you can take?",
             choices: ["Speed up to increase distance", "Maintain a steady speed and allow space ahead", "Change lanes when safe to do so", "Pull over when it is safe and let the vehicle pass"],
@@ -83,7 +83,6 @@ function Quiz() {
             correctChoice: 2,
             explanation: "When skidding, the correct response is to ease off both the gas and brake pedals and steer gently in the direction you want the car to go. Hard braking locks the wheels and worsens the skid. Sharp steering inputs can cause the vehicle to spin out. Staying calm and making smooth, controlled adjustments gives the tires the best chance to regain traction."
         },
-        */
     ]
 
     /*
@@ -94,6 +93,11 @@ function Quiz() {
             explanation: "This is a sample explanation. This will explain why it is the correct answer choice."
         },
     */
+   
+    if (questionIndex == 0)
+    {
+        startTime.current = new Date().getTime()
+    }
 
     const incrementQuestion = (wasCorrect) => {
         if (wasCorrect)
@@ -134,6 +138,7 @@ function Quiz() {
                         correctAnswers={correctAnswers.current}
                         questionCount={questions.length}
                         goBack={incrementQuestion}
+                        startTime={startTime.current}
                     />
                     :
                     <QuizQuestion 

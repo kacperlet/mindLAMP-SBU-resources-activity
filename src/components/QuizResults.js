@@ -1,7 +1,36 @@
+import { useEffect, useRef } from "react";
 import {ReactComponent as IconConfetti} from "../icons/confetti.svg";
 
 function QuizResults(props) {
-    const {correctAnswers, questionCount, goBack} = props
+    const {correctAnswers, questionCount, goBack, startTime} = props
+    const sentMessage = useRef(false)
+
+    const sendResults = () => {
+        console.log((new Date().getTime() - startTime)/1000)
+        window.parent.postMessage(
+            JSON.stringify({
+                timestamp: new Date().getTime(),
+                duration: new Date().getTime() - startTime,
+                static_data: {
+                    correct_answers: correctAnswers,
+                    correct_answer_count: correctAnswers.length,
+                    total_questions: questionCount
+                },
+                temporal_slices: [],        
+                forward: false,
+                clickBack: true,
+            }),
+            "*"
+        );
+    }
+
+    useEffect(() => {
+        if (!sentMessage.current)
+        {
+            sendResults()
+            sentMessage.current = true
+        }
+    }, [])
 
     const percent = correctAnswers.length / questionCount * 100;
 

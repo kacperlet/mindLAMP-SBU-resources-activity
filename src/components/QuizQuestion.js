@@ -63,7 +63,7 @@ function QuizQuestion(props) {
                     {
                     choices.map((choice, index) => {
                         return (
-                            <div key={index}>
+                            <div key={index} className="quiz-choice">
                                 <input disabled={disabled} type="radio" id={index} name="question" value={index} onChange={handleChange}></input>
                                 <label htmlFor={index}>{choice}</label>
                             </div>

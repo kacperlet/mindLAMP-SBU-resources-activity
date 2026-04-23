@@ -254,3 +254,16 @@ div:hover > .right-arrow {
     height: 2000px;
     background: black;
 }
+
+.quiz-choice {
+    min-height: 2em;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+input[type="radio"] {
+    accent-color: #519B80; /* Changes the primary color of the radio */
+    width: 23px;         /* Optional: adjust size */
+    height: 23px;
+}
