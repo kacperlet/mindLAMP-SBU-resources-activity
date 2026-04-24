@@ -18,10 +18,30 @@ function QuizResults(props) {
                 },
                 temporal_slices: [],        
                 forward: false,
+                clickBack: false,
+            }),
+            "*"
+        );
+    }
+
+    const returnToApp = () => {
+        window.parent.postMessage(
+            JSON.stringify({
+                timestamp: new Date().getTime(),
+                duration: new Date().getTime() - startTime,
+                static_data: {
+                    correct_answers: correctAnswers,
+                    correct_answer_count: correctAnswers.length,
+                    total_questions: questionCount
+                },
+                temporal_slices: [],        
+                forward: false,
                 clickBack: true,
             }),
             "*"
         );
+
+        goBack();
     }
 
     useEffect(() => {
@@ -49,8 +69,8 @@ function QuizResults(props) {
                         {` ${percent.toFixed(2)}%`}
                     </b>
                 </div>
-                <button onClick={goBack}>
-                    Try Again
+                <button onClick={returnToApp}>
+                    Go Back
                 </button>
             </div>
         )
