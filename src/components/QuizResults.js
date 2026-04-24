@@ -17,7 +17,6 @@ function QuizResults(props) {
                     total_questions: questionCount
                 },
                 temporal_slices: [],        
-                forward: false,
                 clickBack: false,
             }),
             "*"
@@ -35,7 +34,6 @@ function QuizResults(props) {
                     total_questions: questionCount
                 },
                 temporal_slices: [],        
-                forward: false,
                 clickBack: true,
             }),
             "*"

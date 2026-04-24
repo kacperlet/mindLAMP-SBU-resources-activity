@@ -4,6 +4,9 @@ import resources from './resources';
 import Quiz from './QuizPage';
 import navigate from "../helpers/Navigate"
 
+import {ReactComponent as LeftArrow} from "../icons/left-arrow.svg";
+import {ReactComponent as Dots} from "../icons/dots.svg";
+
 function ResourcePage(props) {
     const { id } = props;
     const resource = resources[id];
@@ -15,9 +18,9 @@ function ResourcePage(props) {
 
     return <>
         <div id="resource-header">
-            <img alt="" src="../icons/left-arrow.svg" style={{height: 42, cursor: 'pointer'}} onClick={() => navigate('/')}></img>
+            <LeftArrow className='clickable' height={42} width={42} onClick={() => navigate('/')}/>
             <span>{resource.display}</span>
-            <img alt="" src="../icons/dots.svg" style={{height: 24}}></img>
+            <Dots height={24} width={24}/>
         </div>
         <div id="resource-list">
             <h1 className="resource-text" style={{color: resource.color, fontSize: 16}}>{resource.title}</h1>

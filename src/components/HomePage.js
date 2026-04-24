@@ -4,10 +4,22 @@ import {ReactComponent as IconDots} from "../icons/dots.svg";
 import navigate from "../helpers/Navigate"
 
 function Home() {
+    const returnToApp = () => {
+        console.log("Returning to app")
+        window.parent.postMessage(
+            JSON.stringify({
+                timestamp: new Date().getTime(),
+                static_data: {},
+                temporal_slices: [],        
+                clickBack: true,
+            }),
+            "*"
+        );
+    }
 
     return <>
         <div id="resource-header">
-            <IconMindlamp />
+            <IconMindlamp className="clickable" onClick={returnToApp}/>
             <span>Resources</span>
             <IconDots  style={{height: 24}} />
         </div>
